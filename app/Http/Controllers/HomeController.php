@@ -31,7 +31,7 @@ class HomeController extends Controller
         //fake chart
         $chart = new ProductsChart;
         $chart->labels($sales->keys());
-        $chart->dataset('','line',$sales->values())->backgroundColor('#37de32');
+        $chart->dataset('','bar',$sales->values())->backgroundColor('#37de32');
 
         return view('dashboard', compact('sales','chart'));
 

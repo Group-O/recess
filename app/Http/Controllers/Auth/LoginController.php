@@ -53,7 +53,7 @@ class LoginController extends Controller
         }
 
         if (auth()->user()->is_admin == 1) {
-            return redirect()->route('profile.edit');
+            return redirect()->route('dashboard');
         }
 
         return redirect()->route('products');

@@ -17,3 +17,6 @@ clothes ; very nice ; 2 ; 20000
 
 shoes; very nice shoes; 23; 25240
 shoes; very nice shoes; 23; 25240
+
+shirts; very nice shirts, large medium and small sizes; 29; 23500
+shirts; very nice shirts, large medium and small sizes; 29; 23500
