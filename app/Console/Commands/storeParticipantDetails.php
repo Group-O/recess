@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use mysqli;
+use Illuminate\Support\Facades\DB;
 
 class storeParticipantDetails extends Command
 {
@@ -38,19 +39,14 @@ class storeParticipantDetails extends Command
      */
     public function handle()
     {
-        $conn= new mysqli('localhost','root','','anka');
-        if(file_exists("participant.txt")){
-            $part_details=file_get_contents("participant.txt");
+        if(file_exists("Details.txt")){
+            $participant_details = file_get_contents("Details.txt");
+            $arr = explode("; ",$participant_details);
+            $data = ['name' => $arr[0], 'password' => $arr[1], 'productName' => $arr[2], 'created_at' => new \DateTime()];
+            DB::table('participants')->insert($data);
+            \info("Participant inserted successfully");
+        }else{
+            \info("File not found");
         }
-        $part_array=explode(";",$part_details);
-        $sql = "INSERT INTO participants( 'name', 'password', 'product') VALUES ('{part_array[0]}','{part_array[1]','{part_array[2]}')";
-        unlink("participant.txt");
-    if($conn->query($sql)===TRUE){
-        echo "New record created successfully";
-    }else{
-        echo "Error".$sql ."<br>".$conn->error;
-    }
-    $conn=close();
-        return 0;
     }
 }

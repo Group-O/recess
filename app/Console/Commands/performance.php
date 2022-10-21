@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Participant;
 use Illuminate\Console\Command;
 use mysqli;
 
@@ -38,27 +39,17 @@ class performance extends Command
      */
     public function handle()
     {
-       $conn= new mysqli ('localhost','root','anka');
-       $sql = "SELECT 'name','points','stock_quantity' FROM WHERE";
-
-       $result = $conn->query($sql);
-       if ($result->num_rows > 0) {
-        $myfile = fopen("participantperformance.txt", "a") or die("unable to open file");
-        while($row = $result->fetch_assoc()){
-            fwrite($myfile, "Name:".$row["name"]." ");
-            fwrite($myfile,"points:".$row["password"]." ");
-            fwrite($myfile,"Products:".$row["product"]." ");
+     $participants = Participant::all();
+    foreach ($participants as $key => $participant) {
+        $name = $participant['name'];
+        $product = $participant['productName'];
+        $points = $participant['points'];
+        $data = $name . " ". $product . " " . $points;
+        if(file_exists("performance.txt")){
+          file_put_contents("performance.txt", $data);
+        }else{
+            \info("File not found");
         }
-        $conn->close();
-     }
-       
-
-
-
-       
-
-
-       
-        return 0;
+    }
     }
 }

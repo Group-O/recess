@@ -6,12 +6,10 @@ public class Anka {
         String product_details = "";
         String request ;
         String command;
-        String Product;
-        String currentProduct = "";
         System.out.println("Welcome to ANKA BUSINESS SUPPORT SERVICES SYSTEM");
         System.out.println("Menu");
-        System.out.println("Register name password product date of birth");
-        System.out.println("Post_product product_name description including quantity and rate per item");
+        System.out.println("Register name ; password ; product");
+        System.out.println("Post_product product_name ; description ; quantity ; rate per item");
         System.out.println("Performance");
         System.out.println("Type exit when you want to exit");
         System.out.println();
@@ -26,42 +24,45 @@ public class Anka {
                 participant_details = b.readLine();
                 //reads all the participant details entered
             } else if (command.equalsIgnoreCase("Post product")) {
-                System.out.println("Enter product");
-                Product = b.readLine();
 
-                if (currentProduct.equals(Product)){
-                    System.out.println("Product already registered");
-                }
-                else {
-                    System.out.println("Proceed");
 
-                    System.out.println("Post_product: ");
+            
+
+                    System.out.print("Post_product: ");
                     product_details = b.readLine();
                 }
-            }
+            
             //reads all the product details entered by the participant
             try {
                 PrintWriter writer = new PrintWriter(new FileWriter("Details.txt", true), true);
-                writer.print(participant_details);
-                writer.println();
-                writer.print(product_details);
-                writer.println();
+                writer.println(participant_details);
+                // writer.println();
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error occurred please re-enter your details");
+            } 
+            try{
+                PrintWriter writer = new PrintWriter( new FileWriter("Products.txt",true),true);
+            writer.println(product_details);
+            // writer.println();
+            writer.close();}
+            catch(IOException e){
+                System.out.println("error");
             }
+
+
             if (command.equalsIgnoreCase("Request")) {
-                int participantId;
-                System.out.println("Enter the participant id given");
-                 participantId = b.read();
+             //   int participantId;
+             //   System.out.println("Enter the participant id given");
+              //   participantId = b.read();
                 request = b.readLine();
                 System.out.println("Enter your request");
                 try {
                     PrintWriter w = new PrintWriter(new FileWriter("Request.txt", true), true);
-                    w.print(request);
-                    w.println();
-                    w.print(participantId);
-                    w.println();
+                    w.println(request);
+                    // w.println();
+                    // w.print(participantId);
+                    // w.println();
                     w.close();
                 } catch (IOException e) {
                     System.out.println("No request found");
@@ -81,6 +82,7 @@ public class Anka {
                         System.out.println("No content found");
                     }
                 }
+                System.out.println();
         }
            while (!command.equalsIgnoreCase("Exit")) ;
     }

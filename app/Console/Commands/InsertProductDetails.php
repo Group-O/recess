@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use DateTime;
 use mysqli;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
 
 class InsertProductDetails extends Command
@@ -38,19 +40,15 @@ class InsertProductDetails extends Command
      */
     public function handle()
     {
-        $conn = new mysqli( 'localhost','root','anka');
-        if(file_exists("products.txt")){
-            $product_details=file_get_contents("products.txt");
-        }
-        $product_array=explode(";",$product_details);
-        $sql= "INSERT INTO products('name','stock_quantity','price','description') VALUES('{$product_array[0]}','{$product_array[1]}','{$product_array[2]}','{$product_array[3]}')";
-        unlink("products.txt");
-        if($conn->query(mysql)===TRUE){
-            echo "New record created successfully";
+
+        if(file_exists("Products.txt")){
+            $product_details = file_get_contents("Products.txt");
+            $arr = explode("; ",$product_details);
+            $data = ['name' => $arr[0], 'description' => $arr[1], 'quantity' => $arr[2], 'price' => $arr[3], 'created_at' => new \DateTime()];
+            DB::table('products')->insert($data);
+            \info("Product inserted successfully");
         }else{
-            echo "Error".$sql."<br>".$conn->error;
+            \info("File not found");
         }
-        $conn->close();
-        return 0;
     }
 }

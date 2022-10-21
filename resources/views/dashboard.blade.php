@@ -5,7 +5,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="card ">
                         <div class="card-header ">
                             <h4 class="card-title">{{ __('Email Statistics') }}</h4>
@@ -24,12 +24,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-8">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">{{ __('Users Behavior') }}</h4>
-                            <p class="card-category">{{ __('24 Hours performance') }}</p>
+                            <h4 class="card-title">{{ __('price of Products') }}</h4>
+                            {{-- <p class="card-category">{{ __('24 Hours performance') }}</p> --}}
                         </div>
                         <div class="card-body "style="height: 20rem;">
                             {{ $sales}}
@@ -38,9 +38,9 @@
                         </div>
                         <div class="card-footer ">
                             <div class="legend">
-                                <i class="fa fa-circle text-info"></i> {{ __('Open') }}
-                                <i class="fa fa-circle text-danger"></i> {{ __('Click') }}
-                                <i class="fa fa-circle text-warning"></i> {{ __('Click Second Time') }}
+                                <i class="fa fa-circle text-success"></i> {{ __('Price') }}
+                                {{-- <i class="fa fa-circle text-danger"></i> {{ __('Click') }}
+                                <i class="fa fa-circle text-warning"></i> {{ __('Click Second Time') }} --}}
                             </div>
                             <hr>
                             <div class="stats">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-6">
                     <div class="card ">
                         <div class="card-header ">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="col-md-6">
                     <div class="card  card-tasks">
                         <div class="card-header ">

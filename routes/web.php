@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Charts\ProductChart;
 use App\Http\Controllers\ProductsController;
 
 /*
