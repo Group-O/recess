@@ -39,14 +39,14 @@ class CreateUserAccount extends Command
     public function handle()
     {
         $newUser=[
-            'name'=> 'Cassandra',
-            'email'=> 'cassandranabatanzi@gmail.com',
+            'name'=> 'Andrew',
+            'email'=> 'Andrew@gmail.com',
             'password'=>bcrypt('secret'),
             'role'=>'Admin',];
 
            $user= User::create($newUser);
            if ($user) {
-            echo 'New User Cassandra Created Successfully';
+            echo 'New User Andrew Created Successfully';
            }
         return 0;
     }
